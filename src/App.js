@@ -16,16 +16,42 @@ class App extends Component {
       }
     ]
   }
+  switchNameHandler = (newName) => {
+    this.setState({
+      persons: [
+        {
+          name: newName, age: 24,
+        },
+        {
+          name: "Jacky", age: 34,
+        },
+        {
+          name: "Peterson", age: 24,
+        }
+      ]
+    }
+    )
+  }
   render() {
     return (
       <div className="App">
         <h1 className="App-title">Welcome to React</h1>
-        <button>Switch Name</button>
-        {
-          this.state.persons.map(person=>{
-            return (<Person name={person.name} age={person.age}/>)
-          })
-        }
+        <button onClick={this.switchNameHandler.bind(this, "FromButton")}>Switch Name2</button>
+        <Person
+          name={this.state.persons[0].name}
+          age={this.state.persons[0].age}
+          click={this.switchNameHandler.bind(this, "ClickedOnMe")}
+         />
+         <Person
+          name={this.state.persons[1].name}
+          age={this.state.persons[1].age}
+          click={this.switchNameHandler.bind(this, "ClickedOnMe")}
+         />
+         <Person
+          name={this.state.persons[2].name}
+          age={this.state.persons[2].age}
+          click={this.switchNameHandler.bind(this, "ClickedOnMe")}
+         />
       </div>
     );
   }
