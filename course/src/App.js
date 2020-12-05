@@ -1,7 +1,20 @@
 import React, { Component } from "react";
 import Person from "./Person/Person";
+import styled from 'styled-components';
 import "./App.css";
 
+const StyledButton = styled.button`
+  font: inherit;
+  background-color: green;
+  color: white;
+  border: 1px solid blue;
+  padding: 8px;
+  cursor: pointer;
+  &:hover{
+    background-color: lightgreen;
+    color: black;
+  }
+`;
 class App extends Component {
   state = {
     persons: [
@@ -52,18 +65,6 @@ class App extends Component {
     console.log(this.state);
   };
   render() {
-    const style = {
-      font: "inherit",
-      backgroundColor: 'green',
-      color: 'white',
-      border: "1px solid blue",
-      padding: "8px",
-      cursor: "pointer",
-      ':hover': {
-        backgroundColor: 'lightgreen',
-        color: 'black'
-      }
-    };
     // preferred way to render components conditionally
     //put this inside render because we want latest state
     let persons = null;
@@ -83,12 +84,6 @@ class App extends Component {
           })}
         </div>
       );
-
-      style.backgroundColor = 'red';
-      style[':hover'] = {
-        backgroundColor: 'salmon',
-        color: 'black'
-      }
     }
 
     const classes = [];
@@ -104,9 +99,9 @@ class App extends Component {
       <div className="App">
         <h1 className="App-title">Welcome to React</h1>
         <p className={classes.join(' ')}>This is added with dynamic class name</p>
-        <button style={style} onClick={this.toggleNameHandler}>
+        <StyledButton onClick={this.toggleNameHandler}>
           ToggleNames
-        </button>
+        </StyledButton>
         {persons}
       </div>
     );
