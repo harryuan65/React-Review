@@ -21,7 +21,7 @@ class App extends Component {
         age: 24,
       },
     ],
-    showPersons: true,
+    showPersons: false,
   };
   deletePersonHandler = (index) => {
     // let persons = this.state.persons;
@@ -55,6 +55,8 @@ class App extends Component {
     const style = {
       backgroundColor: "white",
       font: "inherit",
+      backgroundColor: 'green',
+      color: 'white',
       border: "1px solid blue",
       padding: "8px",
       cursor: "pointer",
@@ -78,6 +80,8 @@ class App extends Component {
           })}
         </div>
       );
+
+      style.backgroundColor = 'red';
     }
     return (
       <div className="App">
