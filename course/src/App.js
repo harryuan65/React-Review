@@ -5,13 +5,13 @@ import "./App.css";
 
 const StyledButton = styled.button`
   font: inherit;
-  background-color: green;
+  background-color: ${props => props.alt ? 'red' : 'green'};
   color: white;
   border: 1px solid blue;
   padding: 8px;
   cursor: pointer;
   &:hover {
-    background-color: lightgreen;
+    background-color:${props => props.alt ? 'salmon' : 'lightgreen'};
     color: black;
   }
 `;
@@ -101,7 +101,7 @@ class App extends Component {
         <p className={classes.join(" ")}>
           This is added with dynamic class name
         </p>
-        <StyledButton onClick={this.toggleNameHandler}>
+        <StyledButton alt={this.state.showPersons ? 1 : 0} onClick={this.toggleNameHandler}>
           ToggleNames
         </StyledButton>
         {persons}
