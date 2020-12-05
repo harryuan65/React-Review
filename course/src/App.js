@@ -54,6 +54,7 @@ class App extends Component {
     // preferred way to render components conditionally
     //put this inside render because we want latest state
     let persons = null;
+    let btnClass = [classes.Button];
     if (this.state.showPersons) {
       persons = (
         <div>
@@ -70,6 +71,7 @@ class App extends Component {
           })}
         </div>
       );
+      btnClass.push(classes.Red);
     }
 
     const assignedClasses = [];
@@ -91,7 +93,7 @@ class App extends Component {
         <p className={assignedClasses.join(" ")}>
           This is added with dynamic class name
         </p>
-        <button className={classes.Button} onClick={this.toggleNameHandler}>
+        <button className={btnClass.join(' ')} onClick={this.toggleNameHandler}>
           ToggleNames
         </button>
         {persons}

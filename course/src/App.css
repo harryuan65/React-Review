@@ -22,6 +22,12 @@
   background-color: lightgreen;
   color: black;
 }
+.Button.Red{
+  background-color: red;
+}
+.Button.Red:hover{
+  background-color: salmon;
+}
 .Button-test{
   background-color: #daf7a7;
   color: #5b5b5b;
