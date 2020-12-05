@@ -21,42 +21,15 @@ class App extends Component {
     ],
     showPersons: true,
   };
-  switchNameHandler = (newName) => {
-    this.setState({
-      persons: [
-        {
-          name: newName,
-          age: 24,
-        },
-        {
-          name: "Jacky",
-          age: 34,
-        },
-        {
-          name: "Peterson",
-          age: 24,
-        },
-      ],
-    });
-  };
-  nameChangeHandler = (event) => {
-    this.setState({
-      persons: [
-        {
-          name: event.target.value,
-          age: 24,
-        },
-        {
-          name: "Jacky",
-          age: 34,
-        },
-        {
-          name: "Peterson",
-          age: 24,
-        },
-      ],
-    });
-    console.log(this.state);
+  deletePersonHandler = (index) => {
+    // let persons = this.state.persons;
+    // persons.splice(index, 1); //但是javascript的array跟object是reference type，這邊已經直接動到state了，這樣很糟
+    // this.setState({persons});
+
+    let persons = [...this.state.persons];
+    // let persons = this.state.persons.slice(); //跟上面...等價
+    persons.splice(index, 1);
+    this.setState({persons})
   };
   toggleNameHandler = () => {
     this.setState({
@@ -78,13 +51,12 @@ class App extends Component {
     if (this.state.showPersons) {
       persons = (
         <div>
-          {this.state.persons.map((person) => {
+          {this.state.persons.map((person, index) => {
             return (
               <Person
                 name={person.name}
                 age={person.age}
-                click={this.switchNameHandler}
-                changed={this.nameChangeHandler}
+                click={() => this.deletePersonHandler(index)}
               />
             );
           })}
@@ -94,12 +66,6 @@ class App extends Component {
     return (
       <div className="App">
         <h1 className="App-title">Welcome to React</h1>
-        <button
-          style={style}
-          onClick={this.switchNameHandler.bind(this, "FromButton")}
-        >
-          Switch Name2
-        </button>
         <button style={style} onClick={this.toggleNameHandler}>
           ToggleNames
         </button>
