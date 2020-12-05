@@ -1,20 +1,6 @@
 import React, { Component } from "react";
 import Person from "./Person/Person";
-import styled from "styled-components";
-import "./App.css";
-
-const StyledButton = styled.button`
-  font: inherit;
-  background-color: ${props => props.alt ? 'red' : 'green'};
-  color: white;
-  border: 1px solid blue;
-  padding: 8px;
-  cursor: pointer;
-  &:hover {
-    background-color:${props => props.alt ? 'salmon' : 'lightgreen'};
-    color: black;
-  }
-`;
+import classes from "./App.css";
 class App extends Component {
   state = {
     persons: [
@@ -86,24 +72,28 @@ class App extends Component {
       );
     }
 
-    const classes = [];
+    const assignedClasses = [];
     if (this.state.persons.length <= 2) {
-      classes.push("red");
+      assignedClasses.push(classes.red);
     }
 
     if (this.state.persons.length <= 1) {
-      classes.push("bold");
+      assignedClasses.push(classes.bold);
+    }
+
+    if (this.state.persons.length === 0) {
+      assignedClasses.push(classes['Button-test']);
     }
 
     return (
-      <div className="App">
-        <h1 className="App-title">Welcome to React</h1>
-        <p className={classes.join(" ")}>
+      <div className={classes.App}>
+        <h1>Welcome to React</h1>
+        <p className={assignedClasses.join(" ")}>
           This is added with dynamic class name
         </p>
-        <StyledButton alt={this.state.showPersons ? 1 : 0} onClick={this.toggleNameHandler}>
+        <button className={classes.Button} onClick={this.toggleNameHandler}>
           ToggleNames
-        </StyledButton>
+        </button>
         {persons}
       </div>
     );

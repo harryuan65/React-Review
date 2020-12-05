@@ -9,3 +9,20 @@
 .bold{
   font-weight: bold ;
 }
+
+.Button{
+  font: inherit;
+  background-color: green;
+  color: white;
+  border: 1px solid blue;
+  padding: 8px;
+  cursor: pointer;
+}
+.Button:hover {
+  background-color: lightgreen;
+  color: black;
+}
+.Button-test{
+  background-color: #daf7a7;
+  color: #5b5b5b;
+}
