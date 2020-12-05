@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Person from './Person/Person';
 import './App.css';
+import person from './Person/Person';
 
 class App extends Component {
   state = {
@@ -62,6 +63,31 @@ class App extends Component {
       padding: '8px',
       cursor: 'pointer'
     }
+    // preferred way to render components conditionally
+    //put this inside render because we want latest state
+    let persons = null;
+    if(this.state.showPersons){
+      persons = <div>
+      <Person
+        name={this.state.persons[0].name}
+        age={this.state.persons[0].age}
+        click={this.switchNameHandler.bind(this, "ClickedOnMe")}
+        changed={this.nameChangeHandler}
+       />
+       <Person
+        name={this.state.persons[1].name}
+        age={this.state.persons[1].age}
+        click={ () => this.switchNameHandler("靠北喔")}
+        changed={this.nameChangeHandler}
+       />
+       <Person
+        name={this.state.persons[2].name}
+        age={this.state.persons[2].age}
+        click={this.switchNameHandler.bind(this, "ClickedOnMe")}
+        changed={this.nameChangeHandler}
+       />
+      </div>
+    }
     return (
       <div className="App">
         <h1 className="App-title">Welcome to React</h1>
@@ -71,30 +97,7 @@ class App extends Component {
         <button
           style={style}
           onClick={this.toggleNameHandler}>ToggleNames</button>
-        {
-          this.state.showPersons ?
-          <div>
-          <Person
-            name={this.state.persons[0].name}
-            age={this.state.persons[0].age}
-            click={this.switchNameHandler.bind(this, "ClickedOnMe")}
-            changed={this.nameChangeHandler}
-           />
-           <Person
-            name={this.state.persons[1].name}
-            age={this.state.persons[1].age}
-            click={ () => this.switchNameHandler("靠北喔")}
-            changed={this.nameChangeHandler}
-           />
-           <Person
-            name={this.state.persons[2].name}
-            age={this.state.persons[2].age}
-            click={this.switchNameHandler.bind(this, "ClickedOnMe")}
-            changed={this.nameChangeHandler}
-           />
-          </div>
-          : null
-        }
+        {persons}
       </div>
     );
   }
