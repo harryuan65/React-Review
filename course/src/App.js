@@ -83,9 +83,13 @@ class App extends Component {
 
       style.backgroundColor = 'red';
     }
+
+    let classes = ['red', 'bold'].join(' ');
+
     return (
       <div className="App">
         <h1 className="App-title">Welcome to React</h1>
+        <p className={classes}>This is added with dynamic class name</p>
         <button style={style} onClick={this.toggleNameHandler}>
           ToggleNames
         </button>
