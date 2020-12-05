@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Person from "./Person/Person";
+import Radium from 'radium';
 import "./App.css";
 
 class App extends Component {
@@ -53,13 +54,16 @@ class App extends Component {
   };
   render() {
     const style = {
-      backgroundColor: "white",
       font: "inherit",
       backgroundColor: 'green',
       color: 'white',
       border: "1px solid blue",
       padding: "8px",
       cursor: "pointer",
+      ':hover': {
+        backgroundColor: 'lightgreen',
+        color: 'black'
+      }
     };
     // preferred way to render components conditionally
     //put this inside render because we want latest state
@@ -82,6 +86,10 @@ class App extends Component {
       );
 
       style.backgroundColor = 'red';
+      style[':hover'] = {
+        backgroundColor: 'salmon',
+        color: 'black'
+      }
     }
 
     const classes = [];
@@ -106,4 +114,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default Radium(App);
