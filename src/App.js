@@ -1,20 +1,22 @@
 import React, { Component } from "react";
 import Person from "./Person/Person";
 import "./App.css";
-import person from "./Person/Person";
 
 class App extends Component {
   state = {
     persons: [
       {
+        id: "abc",
         name: "Harry",
         age: 24,
       },
       {
+        id: "def",
         name: "Jack",
         age: 34,
       },
       {
+        id: "ghi",
         name: "Peter",
         age: 24,
       },
@@ -31,6 +33,18 @@ class App extends Component {
     persons.splice(index, 1);
     this.setState({persons})
   };
+  nameChangedHandler = (event, id) =>{
+    const personIndex = this.state.persons.findIndex(e=>e.id===id);
+    const person = {
+      ...this.state.persons[personIndex]
+    }
+    // const person = Object.assign({}, this.state.persons[personIndex]) // 跟...等價
+    const persons = [...this.state.persons];
+    person.name = event.target.value;
+
+    persons[personIndex] = person;
+    this.setState({persons})
+  }
   toggleNameHandler = () => {
     this.setState({
       showPersons: !this.state.showPersons,
@@ -56,7 +70,9 @@ class App extends Component {
               <Person
                 name={person.name}
                 age={person.age}
+                key={person.id}
                 click={() => this.deletePersonHandler(index)}
+                changed={ (event) => this.nameChangedHandler(event, person.id)}
               />
             );
           })}
