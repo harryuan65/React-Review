@@ -23,7 +23,7 @@ const Cockpit = (props) => {
 
   return(
     <div className={classes.Cockpit}>
-      <h1>Welcome to React</h1>
+      <h1>Welcome to React {props.title}</h1>
       <p className={assignedClasses.join(" ")}>
         This is added with dynamic class name
       </p>
