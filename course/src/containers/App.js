@@ -1,7 +1,6 @@
 import React, { Component } from "react";
-import Person from "./Person/Person";
+import Persons from "../components/Persons/Persons";
 import classes from "./App.css";
-import ErrorBoundary from './ErrorBoundary/ErrorBoundary';
 class App extends Component {
   state = {
     persons: [
@@ -59,20 +58,11 @@ class App extends Component {
     if (this.state.showPersons) {
       persons = (
         <div>
-          {this.state.persons.map((person, index) => {
-            return (
-              // 1. 包在外面這稱為 High Order Component，可以監聽一些事件或擴充某些功能
-              // 2. 因為現在每個render單位最外層由ErrorBoundary開始，所以key要放在這邊
-              <ErrorBoundary key={person.id}>
-                <Person
-                  name={person.name}
-                  age={person.age}
-                  click={() => this.deletePersonHandler(index)}
-                  changed={(event) => this.nameChangedHandler(event, person.id)}
-                />
-              </ErrorBoundary>
-            );
-          })}
+          <Persons
+            persons={this.state.persons}
+            click={this.deletePersonHandler}
+            changed={this.nameChangedHandler}
+            />
         </div>
       );
       btnClass = classes.Red;
