@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Persons from "../components/Persons/Persons";
+import Cockpit from '../components/Cockpit/Cockpit';
 import classes from "./App.css";
 class App extends Component {
   state = {
@@ -54,7 +55,6 @@ class App extends Component {
     // preferred way to render components conditionally
     //put this inside render because we want latest state
     let persons = null;
-    let btnClass = '';
     if (this.state.showPersons) {
       persons = (
         <div>
@@ -65,31 +65,15 @@ class App extends Component {
             />
         </div>
       );
-      btnClass = classes.Red;
-    }
-
-    const assignedClasses = [];
-    if (this.state.persons.length <= 2) {
-      assignedClasses.push(classes.red);
-    }
-
-    if (this.state.persons.length <= 1) {
-      assignedClasses.push(classes.bold);
-    }
-
-    if (this.state.persons.length === 0) {
-      assignedClasses.push(classes['Button-test']);
     }
 
     return (
       <div className={classes.App}>
-        <h1>Welcome to React</h1>
-        <p className={assignedClasses.join(" ")}>
-          This is added with dynamic class name
-        </p>
-        <button className={btnClass} onClick={this.toggleNameHandler}>
-          ToggleNames
-        </button>
+        <Cockpit
+          showPersons={this.state.showPersons}
+          persons={this.state.persons}
+          toggle={this.toggleNameHandler}
+          />
         {persons}
       </div>
     );
